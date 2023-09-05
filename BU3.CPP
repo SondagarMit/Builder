@@ -1,87 +1,143 @@
-#include<iostream.h>
 #include<conio.h>
-#include<string.h>
-class Item
+#include<iostream.h>
+class Bank
 {
-private:
-    static int Items;
-    static float taxRate;
+    public:
+    int balance;
+    int deposited;
 
-public:
-    char name[100];
-    int price;
-    int quantity;
-
-    void inputItem()
+    void intro_1()
     {
-	cout << "Enter item name: ";
-	cin >> name;
-	cout << "Enter item price: ";
-	cin >> price;
-	cout << "Enter item quantity: ";
-	cin >> quantity;
+	cout << "\t\t:- Mitu Bank -:" << endl;
+	cout << "\t------------------------------" << endl;
+
+	cout << "\t:- Designed By Mitu -:" << endl;
+	cout << "\t------------------------------" << endl;
+
+	cout << "\tInspired By Nandani Mam" << endl;
     }
 
-    int calc()
+    void login()
     {
-	return price * quantity;
+        char login_exit;
+        cout << "\t------------------------------" << endl;
+        cout << endl << "Press B to Staff: " << endl;
+        cin >> login_exit;
+
+        if (login_exit == 66 || login_exit == 98)
+        {
+            staff_login_screen();
+        }
+        else
+        {
+            exit();
+        }
     }
 
-    float calculateTax()
+    void exit()
     {
-	return calc() * taxRate;
+        cout << "Thank you for using our bank." << endl;
+    }
+
+    void staff_login_screen()
+    {
+        char name[10], staff_email[10];
+        int staff_num;
+        long number;
+
+        cout << "\t------------------------------" << endl;
+        cout << "\tWelcome To Staff" << endl;
+        cout << "\t------------------------------" << endl;
+
+        cout << "Staff Name: " << endl;
+        cin >> name;
+
+        cout << "Staff Number: " << endl;
+        cin >> staff_num;
+
+        cout << "Phone Number: " << endl << "+91 ";
+        cin >> number;
+
+        cout << "Staff Email: " << endl;
+        cin >> staff_email;
+
+        money_process();
+    }
+
+    void money_process()
+    {
+        int choice;
+	while (1)
+        {
+            cout << "\t------------------------------" << endl;
+            cout << "1. Deposit money" << endl;
+            cout << "2. Withdraw money" << endl;
+            cout << "3. Exit" << endl;
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            switch (choice)
+            {
+                case 1:
+                    deposit();
+		    deposited = 1;
+		    break;
+		case 2:
+		    if (deposited)
+                    {
+                        withdraw();
+                    }
+                    else
+                    {
+                        cout << "You must deposit money first before making a withdrawal." << endl;
+                    }
+                    break;
+                case 3:
+                    return;
+                default:
+                    cout << "Invalid choice. Please enter 1, 2, or 3." << endl;
+            }
+        }
+    }
+
+    void deposit()
+    {
+        int deposit_amount;
+        cout << "Enter Deposit Amount: ";
+        cin >> deposit_amount;
+        balance += deposit_amount;
+        cout << "Your Updated Balance: " << balance << endl;
+    }
+
+    void withdraw()
+    {
+        int withdraw_amount;
+        cout << "Enter Withdraw Amount: ";
+        cin >> withdraw_amount;
+
+        if (withdraw_amount <= balance)
+        {
+            balance -= withdraw_amount;
+            cout << "Your Updated Balance: " << balance << endl;
+        }
+        else
+        {
+            cout << "Invalid amount. Insufficient funds. Your balance is: " << balance << endl;
+        }
     }
 
     void display()
     {
-	cout << "Item: " << name << endl;
-	cout << "Price: " << price << endl;
-	cout << "Quantity: " << quantity << endl;
-	cout << "Total (Before Tax): " << calc() << endl;
-	cout << "Tax: " << calculateTax() << endl;
-	cout << "Total (After Tax): " << calc() + calculateTax() << endl;
-    }
-
-    static void setTaxRate(float rate)
-    {
-	taxRate = rate;
+        intro_1();
+        login();
     }
 };
 
-int Item::Items;
-float Item::taxRate = 0.18f;
-
 void main()
 {
-    int numItems, i;
-
-
+    Bank obj;
     clrscr();
 
-    cout << "Enter the number of items: ";
-    cin >> numItems;
-
-    Item *items = new Item[numItems];
-
-    for (i = 0; i < numItems; i++)
-    {
-	cout << "Enter details for item #" << i + 1 << endl;
-	items[i].inputItem();
-    }
-
-    float taxRate;
-    cout << "Enter the tax rate (Ex. 0.18 for 18%): ";
-    cin >> taxRate;
-    Item::setTaxRate(taxRate);
-
-    cout << "*-------------------------------*" << endl;
-    cout << "Billing Details:" << endl;
-    for (i = 0; i < numItems; i++)
-    {
-	cout << "Item No." << i + 1 << endl;
-	items[i].display();
-    }
-    cout << "*-------------------------------*";
-
-   getch();
+    obj.display();
+    getch();
 }
