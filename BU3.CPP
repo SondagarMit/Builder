@@ -8,19 +8,17 @@ class Bank
 
     void intro_1()
     {
-	cout << "\t\t:- Mitu Bank -:" << endl;
-	cout << "\t------------------------------" << endl;
-
-	cout << "\t:- Designed By Mitu -:" << endl;
-	cout << "\t------------------------------" << endl;
-
-	cout << "\tInspired By Nandani Mam" << endl;
+	cout << " \t   :- Mitu Bank -:" << endl;
+	cout << "\t :- Designed By Mitu -:" << endl;
+	cout << endl;
+	cout << "\t**************************" << endl;
+	cout << " \t Inspired By Nandani Mam" << endl;
+	cout << "\t**************************"<<endl;
     }
 
     void login()
     {
-        char login_exit;
-        cout << "\t------------------------------" << endl;
+	char login_exit;
         cout << endl << "Press B to Staff: " << endl;
         cin >> login_exit;
 
@@ -45,41 +43,44 @@ class Bank
         int staff_num;
         long number;
 
-        cout << "\t------------------------------" << endl;
-        cout << "\tWelcome To Staff" << endl;
-        cout << "\t------------------------------" << endl;
+	cout << "\t------------------------------" << endl;
+	cout << "\t      Welcome To Staff" << endl;
+	cout << "\t------------------------------" << endl;
 
-        cout << "Staff Name: " << endl;
-        cin >> name;
+	cout << "\tStaff Name: ";
+	cin >> name;
 
-        cout << "Staff Number: " << endl;
-        cin >> staff_num;
+	cout << "\tStaff Number: ";
+	cin >> staff_num;
 
-        cout << "Phone Number: " << endl << "+91 ";
-        cin >> number;
+	cout << "\tPhone Number: " << "+91 ";
+	cin >> number;
 
-        cout << "Staff Email: " << endl;
-        cin >> staff_email;
+	cout << "\tStaff Email: ";
+	cin >> staff_email;
 
-        money_process();
+	money_process();
     }
 
     void money_process()
     {
-        int choice;
+	int choice;
 	while (1)
-        {
-            cout << "\t------------------------------" << endl;
-            cout << "1. Deposit money" << endl;
-            cout << "2. Withdraw money" << endl;
-            cout << "3. Exit" << endl;
-            cout << "Enter your choice: ";
-            cin >> choice;
+	{
+	    cout << endl;
+	    cout << endl;
 
-            switch (choice)
-            {
-                case 1:
-                    deposit();
+	    cout << "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*" << endl;
+	    cout << "\t1. Deposit money" << endl;
+	    cout << "\t2. Withdraw money" << endl;
+	    cout << "\t3. Exit" << endl;
+	    cout << "\tEnter your choice: ";
+	    cin >> choice;
+
+	    switch (choice)
+	    {
+		case 1:
+		    deposit();
 		    deposited = 1;
 		    break;
 		case 2:
